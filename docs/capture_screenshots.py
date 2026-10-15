@@ -28,6 +28,7 @@ import ctypes.wintypes as wt
 import os
 import struct
 import sys
+import tempfile
 import time
 import zlib
 
@@ -239,6 +240,19 @@ def raise_window(win, settle=0.7):
         pass
 
 
+def ignore_close(win):
+    """Swallow a WM_DELETE_WINDOW for the duration of the capture.
+
+    Windows occasionally posts a close request to a window that nobody is
+    touching, and App.on_close turns that into a full shut-down - which kills
+    the run half way through and leaves the last few screenshots missing.
+    """
+    try:
+        win.protocol("WM_DELETE_WINDOW", lambda: None)
+    except Exception:
+        pass
+
+
 def shoot(win, name):
     raise_window(win)
     w, h, rows = capture(win.winfo_id())
@@ -251,7 +265,19 @@ def main():
 
     os.makedirs(DOCS, exist_ok=True)
 
+    # These shots end up in a public repository, so point the app at an empty
+    # account list instead of the real accounts.json. No account shows up in
+    # the window and nothing gets written back to the real file.
+    blank = os.path.join(tempfile.gettempdir(), "voicehive_shots_accounts.json")
+    try:
+        with open(blank, "w", encoding="utf-8") as fh:
+            fh.write("[]")
+        vh.ACCOUNTS_FILE = blank
+    except Exception:
+        pass
+
     app = vh.App()
+    ignore_close(app)
     raise_window(app, 1.2)
 
     written = 0
@@ -266,11 +292,12 @@ def main():
             continue
         try:
             app.nb.select(frame)
-        except Exception:
-            pass
-        pump(app, 0.6)
-        shoot(app, name)
-        written += 1
+            pump(app, 0.6)
+            shoot(app, name)
+            written += 1
+        except Exception as exc:
+            print(f"[shots] skipped {name}: {exc}")
+        ignore_close(app)
 
     for opener, attr, name in (
         ("_open_monitor_window", "_monitor_win", "Live Listen.png"),
@@ -281,12 +308,16 @@ def main():
             pump(app, 1.4)
             win = getattr(app, attr, None)
             if win is not None:
+                ignore_close(win)
                 shoot(win, name)
                 written += 1
         except Exception as exc:
             print(f"[shots] skipped {name}: {exc}")
 
-    app.destroy()
+    try:
+        app.destroy()
+    except Exception:
+        pass
     print(f"[shots] {written} screenshot(s) written to docs/")
     return 0
 
