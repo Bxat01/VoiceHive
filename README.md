@@ -75,6 +75,15 @@ audio file, and open the Live Listen window.
 
 <img src="docs/Voice.png" width="920" alt="VoiceHive voice tab">
 
+**Live Listen & Members** — who is in the channel, per-speaker volume, and the
+mute / record / test-tone buttons.
+
+<img src="docs/Live Listen.png" width="920" alt="VoiceHive live listen window">
+
+**Routing** — fan the accounts out over different servers and channels.
+
+<img src="docs/Routing.png" width="920" alt="VoiceHive routing window">
+
 ## Features
 
 - As many accounts as you like, each with its own state, name and avatar.
