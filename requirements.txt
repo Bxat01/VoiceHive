@@ -1,0 +1,6 @@
+# VoiceHive runtime dependency.
+#
+# One package is enough: discord.py-self provides the client *and* the voice
+# extra, which pulls in the libopus bindings (discord.opus) plus "davey", the
+# library that decrypts Discord's DAVE / E2EE voice frames.
+discord.py-self[voice]>=2.1.0
