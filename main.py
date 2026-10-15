@@ -21,62 +21,6 @@ client I use to test that pipeline without the GUI.
 Needs Python 3.13 with discord.py-self installed (on Windows just double-click
 run.bat). This is the v0.0.1-beta build, so expect a few rough edges.
 """
-```
-
-Then the constants.
-
-Let me do the edits one at a time with exact old strings.
-
-Edit for the docstring: old string is lines 1-21 exactly:
-```
-"""
-VoiceHive - Multi-Account Discord Voice Control
-===============================================
-A dark-themed Tkinter panel to manage many Discord accounts at once:
-add accounts, join servers, join voice channels, and mute / deafen
-them individually or in bulk.
-
-New in this build
------------------
-* Detached "Live Listen & Members" window: pick any account that is in
-  voice, see the channel's members with their avatars, mute them, and
-  actually listen to what they say (audio is received, decoded and played
-  locally through ``voice_listen.py`` - no extra libraries).
-* Detached "Routing" window: send each account to its own server/channel
-  (scatter them), one by one or all at once.
-* Live server and channel search in the Voice tab (filters as you type).
-* Every account row shows the voice channel it currently sits in.
-
-Run with Python 3.13 (the interpreter that has discord.py-self installed).
-On Windows just double-click run.bat
-"""
-```
-
-Let me make that edit.</think>
-
-<｜DSML｜ calls>
-<｜DSML｜ invoke name="edit">
-<｜DSML｜ parameter name="newString" string="true">"""
-VoiceHive - Multi-Account Discord Voice Control
-===============================================
-A dark-themed Tkinter panel to manage many Discord accounts at once:
-add accounts, join servers, join voice channels, and mute / deafen
-them individually or in bulk.
-
-There are two extra windows you can open from the top bar:
-
-  * "Live Listen & Members" - pick an account that is sitting in a voice
-    channel, see who else is in there with their avatars, mute individual
-    people, and actually listen to the channel. The audio side lives in
-    voice_listen.py.
-  * "Routing" - scatter the accounts across different servers and channels
-    instead of dumping them all in the same one.
-
-Run with Python 3.13 (the interpreter that has discord.py-self installed).
-On Windows just double-click run.bat.
-
-This is the v0.0.1-beta build - see README.md.
-"""
 
 from __future__ import annotations
 
