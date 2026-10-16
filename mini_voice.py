@@ -34,7 +34,7 @@ os.environ.setdefault("PYTHONIOENCODING", "utf-8")
 
 import discord  # noqa: E402
 import voice_listen as vl  # noqa: E402
-from main import build_audio_source  # noqa: E402
+from main import build_audio_source  # noqa: E402 
 
 TONE_WAV = os.path.join(os.environ.get("TEMP", "."), "voicehive_tone440.wav")
 CAPTURE_WAV = os.path.join(os.environ.get("TEMP", "."), "voicehive_capture.wav")
