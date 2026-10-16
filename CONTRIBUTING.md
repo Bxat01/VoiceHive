@@ -7,7 +7,7 @@ unclear, open an issue and ask.
 VoiceHive is at **v0.0.1-beta**, so expect missing pieces and the occasional crash.
 "Here's what broke and here's the log" is genuinely useful right now.
 
-## Before you start
+## Before you start 
 
 - Check the [open issues](https://github.com/xavort/VoiceHive/issues) so we don't end up
   with two people fixing the same thing.
